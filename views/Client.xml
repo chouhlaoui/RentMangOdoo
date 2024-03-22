@@ -1,0 +1,71 @@
+<odoo>
+<record id="client_view_tree" model="ir.ui.view">
+    <field name="name">client tree</field>
+    <field name="model">client</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="fullname"/>
+            <field name="nationality"/>
+            <field name="identity"/>
+            <field name="dateidentity"/>
+            <field name="drivinglicence" />
+            <field name="datelicence"/>
+            <field name="address"/>
+            <field name="phonenumber"/>
+        </tree>
+    </field>
+</record>
+
+    <record id="client_view_search" model="ir.ui.view">
+        <field name="name">client search</field>
+        <field name="model">client</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="identity"/>
+                <field name="fullname"/>
+
+                <filter name="is_nationality" string="Tunisian Citizens" domain="[('nationality', 'ilike', 'tunisian')]"/>
+
+                <filter name="group_nationality" string="By nationality" context="{'group_by': 'nationality'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="client_view_form" model="ir.ui.view">
+        <field name="name">client form</field>
+        <field name="model">client</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="identity"/>
+                        <h1>
+                            <field name="identity"/>
+                        </h1>
+                    </div>
+                    <group string ="General Info.">
+                        <field name="fullname"/>
+                        <field name="nationality"/>
+                        <field name="dateidentity"/>
+                        <field name="drivinglicence" />
+                        <field name="datelicence"/>
+                        <field name="address"/>
+                        <field name="phonenumber"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="client_action" model="ir.actions.act_window">
+        <field name="name">client</field>
+        <field name="res_model">client</field>
+    </record>
+    <menuitem
+        id="client_menu_item"
+        name="Client List"
+        parent="client_menu"
+        action="client_action"
+    />
+
+</odoo>

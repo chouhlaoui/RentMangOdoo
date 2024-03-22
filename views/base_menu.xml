@@ -1,0 +1,25 @@
+<odoo>
+    <menuitem
+        id="rental_root_menu"
+        name="Car Rental Management"
+        sequence="10"
+    />
+    <menuitem
+        id="reservation_menu"
+        name="Reservation"
+        parent="rental_root_menu"
+        sequence="20"
+    />
+    <menuitem
+        id="car_menu"
+        name="Car"
+        parent="rental_root_menu"
+        sequence="30"
+    />
+    <menuitem
+        id="client_menu"
+        name="Client"
+        parent="rental_root_menu"
+        sequence="40"
+    />
+</odoo>

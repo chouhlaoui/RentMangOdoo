@@ -1,0 +1,67 @@
+<odoo>
+<record id="car_view_tree" model="ir.ui.view">
+    <field name="name">car tree</field>
+    <field name="model">car</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="matricule"/>
+            <field name="namecar"/>
+            <field name="brandcar"/>
+        </tree>
+    </field>
+</record>
+
+    <record id="car_view_search" model="ir.ui.view">
+        <field name="name">car search</field>
+        <field name="model">car</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="matricule"/>
+                <field name="brandcar"/>
+                <filter name="is_SUV" string="With model SUV" domain="[('namecar', 'ilike', 'SUV')]"/>
+                <filter name="group_brand" string="By brand" context="{'group_by': 'brandcar'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="car_view_form" model="ir.ui.view">
+        <field name="name">car form</field>
+        <field name="model">car</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <div class="oe_title">
+                        <label for="matricule"/>
+                        <h1>
+                            <field name="matricule" required="True"/>
+                        </h1>
+                    </div>
+                    <group string ="General Info.">
+                        <field name="namecar" required="True"/>
+                        <field name="brandcar" required="True"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Create" name="create_car" type="object" class="btn-primary"/>
+                    <button string="Save" name="save_car" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    <button string="Delete" name="delete_car" type="object" class="btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="car_action" model="ir.actions.act_window">
+        <field name="name">Car</field>
+        <field name="res_model">car</field>
+    </record>
+    <menuitem
+        id="car_menu_item"
+        name="Car List"
+        parent="car_menu"
+        action="car_action"
+    />
+</odoo>
